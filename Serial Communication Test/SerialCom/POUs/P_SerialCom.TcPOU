@@ -3,10 +3,6 @@
   <POU Name="P_SerialCom" Id="{b19f171e-24a4-40f9-86b0-32983ede39fc}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_SerialCom
 VAR
-	(*テストではパソコンにシリアルポートが無いので未使用
-	fbModbusRtuSlave_PcCOM			:ModbusRtuSlave_PcCOM;
-	*)
-	
 	//テスト用のファンクションブロック
 	fbSerialLineControlADS				:SerialLineControlADS;
 	fbModbusRtuSlave_Generic			:ModbusRtuSlave_Generic;
@@ -24,13 +20,13 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//----テスト用のModbus通信---
 	//シリアル接続を設定
-	stSerialCfg.ComPort			:=3;
-	stSerialCfg.Baudrate		:=9600;
-	stSerialCfg.Parity			:=PARITY_NONE;
+	stSerialCfg.ComPort			:=4;
+	stSerialCfg.Baudrate		:=19200;
+	stSerialCfg.Parity			:=PARITY_EVEN;
 	stSerialCfg.DataBits		:=8;
 	stSerialCfg.StopBits		:=STOPBITS_ONE;
-	stSerialCfg.DTR				:=DTR_CTRL_DISABLE;
-	stSerialCfg.RTS				:=RTS_CTRL_DISABLE;
+	stSerialCfg.DTR				:=DTR_CTRL_HANDSHAKE;
+	stSerialCfg.RTS				:=RTS_CTRL_HANDSHAKE;
 	stSerialCfg.CTS				:=FALSE;
 	stSerialCfg.DSR				:=FALSE;
 	
