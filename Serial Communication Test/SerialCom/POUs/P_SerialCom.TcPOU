@@ -15,10 +15,19 @@ VAR
 	bAdsError							:BOOL;
 	nAdsErrorID							:UDINT;	
 
+	i									:INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//----テスト用のModbus通信---
+      <ST><![CDATA[//---テスト用変数書き換え---
+	i:=i+1;
+	IF 32767 < i THEN
+		i:=0;
+	END_IF 
+	
+	GVL_SerialCom.Inputs[0]:=INT_TO_WORD(i);
+
+//----テスト用のModbus通信---
 	//シリアル接続を設定
 	stSerialCfg.ComPort			:=4;
 	stSerialCfg.Baudrate		:=19200;
